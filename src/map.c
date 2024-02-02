@@ -5,6 +5,7 @@
 Map map = {.map = NULL, .size = 0};
 
 void create_empty_map (Map* map, int size){
+	map -> size = size; 
 	map -> map = malloc(sizeof(Color)* map -> size * map -> size);
 }
 
@@ -33,13 +34,38 @@ set_map_value(map, 0, map -> size, 1);
 set_map_value(map, map -> size, 0, 2);
 }
 
+void print_map(Map* map);
+
 int main(int argc, char** argv){
+	create_empty_map(&map, 10);
+	fill_map(&map);
+	print_map(&map);
 }
 
 void print_map(Map* map){
 	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
-			printf("%c", map[i + j]);
+			if (map -> map[i + j] == 3){
+				printf("R");
+			}
+			if (map -> map[i + j] == 4){
+				printf("G");
+			}
+			if (map -> map[i + j] == 5){
+				printf("B");
+			}
+			if (map -> map[i + j] == 6){
+				printf("Y");
+			}
+			if (map -> map[i + j] == 7){
+				printf("M");
+			}
+			if (map -> map[i + j] == 8){
+				printf("C");
+			}
+			if (map -> map[i + j] == 9){
+				printf("W");
+			}
 		}
 		printf("\n");
 	}
