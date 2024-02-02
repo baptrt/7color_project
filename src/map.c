@@ -45,25 +45,31 @@ int main(int argc, char** argv){
 void print_map(Map* map){
 	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
-			if (map -> map[i + j] == 3){
+			if (get_map_value (map, i, j) == 1){
+				printf("1");
+			}
+			if (get_map_value (map, i, j) == 2){
+				printf("2");
+			}
+			if (get_map_value (map, i, j) == 3){
 				printf("R");
 			}
-			if (map -> map[i + j] == 4){
+			if (get_map_value (map, i, j) == 4){
 				printf("G");
 			}
-			if (map -> map[i + j] == 5){
+			if (get_map_value (map, i, j) == 5){
 				printf("B");
 			}
-			if (map -> map[i + j] == 6){
+			if (get_map_value (map, i, j) == 6){
 				printf("Y");
 			}
-			if (map -> map[i + j] == 7){
+			if (get_map_value (map, i, j) == 7){
 				printf("M");
 			}
-			if (map -> map[i + j] == 8){
+			if (get_map_value (map, i, j) == 8){
 				printf("C");
 			}
-			if (map -> map[i + j] == 9){
+			if (get_map_value (map, i, j) == 9){
 				printf("W");
 			}
 		}
