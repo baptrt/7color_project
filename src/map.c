@@ -35,3 +35,14 @@ set_map_value(map, map -> size, 0, 2);
 
 int main(int argc, char** argv){
 }
+
+void print_map(Map* map){
+	for (int i = 0; i < map -> size; i++){
+		for (int j = 0; j < map -> size; j++){
+			print("%c", map[i + j]);
+		}
+		print("\n");
+	}
+
+
+}
