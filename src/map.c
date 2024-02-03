@@ -52,25 +52,32 @@ void print_map(Map* map){
 				printf("2");
 			}
 			if (get_map_value (map, i, j) == 3){
-				printf("R");
+				//printf("R");
+				printf("\033[1;31mR\033[0m");
 			}
 			if (get_map_value (map, i, j) == 4){
-				printf("G");
+				//printf("G");
+				printf("\033[1;32mG\033[0m");
 			}
 			if (get_map_value (map, i, j) == 5){
-				printf("B");
+				//printf("B");
+				printf("\033[1;34mB\033[0m");
 			}
 			if (get_map_value (map, i, j) == 6){
-				printf("Y");
+				//printf("Y");
+				printf("\033[1;33mY\033[0m");
 			}
 			if (get_map_value (map, i, j) == 7){
-				printf("M");
+				//printf("M");
+				printf("\033[1;35mM\033[0m");
 			}
 			if (get_map_value (map, i, j) == 8){
-				printf("C");
+				//printf("C");
+				printf("\033[1;36mC\033[0m");
 			}
 			if (get_map_value (map, i, j) == 9){
-				printf("W");
+				//printf("W");
+				printf("\033[1;37mW\033[0m");
 			}
 		}
 		printf("\n");
