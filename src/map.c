@@ -30,8 +30,8 @@ void fill_map(Map* map){
 				set_map_value (map, i, j, n);
 		}
 	}
-set_map_value(map, 0, map -> size, 1);
-set_map_value(map, map -> size, 0, 2);
+set_map_value(map, 0, map -> size - 1, 1);
+set_map_value(map, map -> size - 1, 0, 2);
 }
 
 void print_map(Map* map);
