@@ -42,6 +42,9 @@ int main(int argc, char** argv){
 	print_map(&map);
 }
 
+
+//Question 2 : Affichage dans le terminal de l'état actuel de la partie avec des lettres
+/*
 void print_map(Map* map){
 	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
@@ -52,31 +55,61 @@ void print_map(Map* map){
 				printf("2");
 			}
 			if (get_map_value (map, i, j) == 3){
-				//printf("R");
+				printf("R");
+			}
+			if (get_map_value (map, i, j) == 4){
+				printf("G");
+			}
+			if (get_map_value (map, i, j) == 5){
+				printf("B");
+			}
+			if (get_map_value (map, i, j) == 6){
+				printf("Y");
+			}
+			if (get_map_value (map, i, j) == 7){
+				printf("M");
+			}
+			if (get_map_value (map, i, j) == 8){
+				printf("C");
+			}
+			if (get_map_value (map, i, j) == 9){
+				printf("W");
+			}
+		}
+		printf("\n");
+	}
+}
+*/
+
+//Question 2 : Affichage dans le terminal de l'état actuel de la partie en couleur
+void print_map(Map* map){
+	for (int i = 0; i < map -> size; i++){
+		for (int j = 0; j < map -> size; j++){
+			if (get_map_value (map, i, j) == 1){
+				printf("1");
+			}
+			if (get_map_value (map, i, j) == 2){
+				printf("2");
+			}
+			if (get_map_value (map, i, j) == 3){
 				printf("\033[1;31m■\033[0m");
 			}
 			if (get_map_value (map, i, j) == 4){
-				//printf("G");
 				printf("\033[1;32m■\033[0m");
 			}
 			if (get_map_value (map, i, j) == 5){
-				//printf("B");
 				printf("\033[1;34m■\033[0m");
 			}
 			if (get_map_value (map, i, j) == 6){
-				//printf("Y");
 				printf("\033[1;33m■\033[0m");
 			}
 			if (get_map_value (map, i, j) == 7){
-				//printf("M");
 				printf("\033[1;35m■\033[0m");
 			}
 			if (get_map_value (map, i, j) == 8){
-				//printf("C");
 				printf("\033[1;36m■\033[0m");
 			}
 			if (get_map_value (map, i, j) == 9){
-				//printf("W");
 				printf("\033[1;37m■\033[0m");
 			}
 		}
