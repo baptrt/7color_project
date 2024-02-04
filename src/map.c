@@ -4,6 +4,7 @@
 
 Map map = {.map = NULL, .size = 0};
 
+//Question 1 : 
 void create_empty_map (Map* map, int size){
 	map -> size = size; 
 	map -> map = malloc(sizeof(Color)* map -> size * map -> size);
@@ -35,6 +36,7 @@ set_map_value(map, map -> size - 1, 0, 2);
 }
 
 void print_map(Map* map);
+void update_map(Map* map);
 
 int main(int argc, char** argv){
 	create_empty_map(&map, 10);
@@ -115,4 +117,9 @@ void print_map(Map* map){
 		}
 		printf("\n");
 	}
+}
+
+//Question 3 : 
+void update_map(Map* map){
+
 }
