@@ -1,7 +1,35 @@
 #include "../head/map.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
+
+
+/*
+	maVariable  =  valeur de ma variable
+	&maVariable   =  adresse de la variable
+	*monPointeur  =  valeur de la variable pointee
+	monPointeur = adresse de la variable pointée
+	
+	int Mateo = 5;
+	int* a = &Mateo;
+	print(a) --> 4 rue de Roumanie
+	print(*a) = 5;
+	print(&Mateo) = 4 rue de Roumanie
+
+	*a = 4;
+	print(Mateo) = 4
+	print(&a) =  11 avenue Robert Schumann
+
+
+	void changement(int* pointeurdelavariable, int valeurDuChangement)
+	{
+		*pointeurdelavariable = valeurDuChangement;
+
+	}
+
+	Mateo = changement(Mateo, 4);
+*/
 Map map = {.map = NULL, .size = 0};
 
 //Question 1 : 
@@ -24,6 +52,7 @@ Color get_map_value (Map* map, int x, int y){
 }
 
 void fill_map(Map* map){
+	srand(time(NULL));
 	int n = 0;
 	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
@@ -43,7 +72,6 @@ int main(int argc, char** argv){
 	fill_map(&map);
 	print_map(&map);
 }
-
 
 //Question 2 : Affichage dans le terminal de l'état actuel de la partie avec des lettres
 /*
@@ -122,4 +150,10 @@ void print_map(Map* map){
 //Question 3 : 
 void update_map(Map* map){
 
+ 	for (int i = 0; i < map -> size; i++){
+		for (int j = 0; j < map -> size; j++){
+			
+		}
+	
+}
 }
