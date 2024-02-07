@@ -66,7 +66,7 @@ set_map_value(map, map -> size - 1, 0, 2);
 }
 
 void print_map(Map* map);
-void update_map(Map* map, Color value);
+void update_map(Map* map, Color value, int player);
 
 int main(int argc, char** argv){
 	int RED = 3;
@@ -84,7 +84,7 @@ int main(int argc, char** argv){
 
 	printf("Joueur 1 quelle couleur choisis-tu? ");
 	scanf("%d", &n);
-	update_map(&map, n);
+	update_map(&map, n, 1);
 	print_map(&map);
 }
 
@@ -164,35 +164,21 @@ void print_map(Map* map){
 }
 
 //Question 3 : 
-void update_map(Map* map, Color value){
+void update_map(Map* map, Color value, int player){
  	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
-			if (get_map_value(map, i, j) == 1){
+			if (get_map_value(map, i, j) == player){
 				if ((i < map -> size - 1) && (get_map_value(map, i + 1, j) == value)){
-					set_map_value (map, i + 1, j, 1);
+					set_map_value (map, i + 1, j, player);
 				}
 				if ((j < map -> size - 1) && (get_map_value(map, i, j + 1) == value)){
-					set_map_value (map, i, j + 1, 1);
+					set_map_value (map, i, j + 1, player);
 				}
 				if ((i > 0) && (get_map_value(map, i - 1, j) == value)){
-					set_map_value (map, i - 1, j, 1);
+					set_map_value (map, i - 1, j, player);
 				}
 				if ((j > 0) && get_map_value(map, i, j - 1) == value){
-					set_map_value (map, i, j - 1, 1);
-				}
-			}
-			if (get_map_value(map, i, j) == 2){
-				if ((i < map -> size - 1) && (get_map_value(map, i + 1, j) == value)){
-					set_map_value (map, i + 1, j, 2);
-				}
-				if ((j < map -> size - 1) && (get_map_value(map, i, j + 1) == value)){
-					set_map_value (map, i, j + 1, 2);
-				}
-				if ((i > 0) && (get_map_value(map, i - 1, j) == value)){
-					set_map_value (map, i - 1, j, 2);
-				}
-				if ((j > 0) && (get_map_value(map, i, j - 1) == value)){
-					set_map_value (map, i, j - 1, 2);
+					set_map_value (map, i, j - 1, player);
 				}
 			}
 		}	
