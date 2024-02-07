@@ -1,7 +1,7 @@
 #include "../head/map.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
+#include <time.h> //Afin d'initialiser la fonction rand 
 
 
 
@@ -60,16 +60,31 @@ void fill_map(Map* map){
 				set_map_value (map, i, j, n);
 		}
 	}
+
 set_map_value(map, 0, map -> size - 1, 1);
 set_map_value(map, map -> size - 1, 0, 2);
 }
 
 void print_map(Map* map);
-void update_map(Map* map);
+void update_map(Map* map, Color value);
 
 int main(int argc, char** argv){
+	int RED = 3;
+	int GREEN = 4;
+	int BLUE = 5;
+	int YELLOW = 6;
+	int MAGENTA = 7;
+	int CYAN = 8;
+	int WHITE = 9;
+	int n;
+
 	create_empty_map(&map, 10);
 	fill_map(&map);
+	print_map(&map);
+
+	printf("Joueur 1 quelle couleur choisis-tu? ");
+	scanf("%d", &n);
+	update_map(&map, n);
 	print_map(&map);
 }
 
@@ -145,15 +160,41 @@ void print_map(Map* map){
 		}
 		printf("\n");
 	}
+	printf("\n");
 }
 
 //Question 3 : 
-void update_map(Map* map){
-
+void update_map(Map* map, Color value){
  	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
-			
-		}
-	
+			if (get_map_value(map, i, j) == 1){
+				if ((i < map -> size - 1) && (get_map_value(map, i + 1, j) == value)){
+					set_map_value (map, i + 1, j, 1);
+				}
+				if ((j < map -> size - 1) && (get_map_value(map, i, j + 1) == value)){
+					set_map_value (map, i, j + 1, 1);
+				}
+				if ((i > 0) && (get_map_value(map, i - 1, j) == value)){
+					set_map_value (map, i - 1, j, 1);
+				}
+				if ((j > 0) && get_map_value(map, i, j - 1) == value){
+					set_map_value (map, i, j - 1, 1);
+				}
+			}
+			if (get_map_value(map, i, j) == 2){
+				if ((i < map -> size - 1) && (get_map_value(map, i + 1, j) == value)){
+					set_map_value (map, i + 1, j, 2);
+				}
+				if ((j < map -> size - 1) && (get_map_value(map, i, j + 1) == value)){
+					set_map_value (map, i, j + 1, 2);
+				}
+				if ((i > 0) && (get_map_value(map, i - 1, j) == value)){
+					set_map_value (map, i - 1, j, 2);
+				}
+				if ((j > 0) && (get_map_value(map, i, j - 1) == value)){
+					set_map_value (map, i, j - 1, 2);
+				}
+			}
+		}	
 }
 }
