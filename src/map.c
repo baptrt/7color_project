@@ -310,7 +310,7 @@ int player_smart(Map* map, int player){
 	return (possibilities[n] + 3);
 	*/
 
-
+/*
 int main(int argc, char** argv){
 	int n;
 	create_empty_map(&map, 3);
@@ -320,7 +320,7 @@ int main(int argc, char** argv){
 while(game_finished(&map) == 0){
 	printf("%i", player_smart(&map, 1));
 	printf("\n");
-	
+
 	update_map(&map, player_smart(&map, 1), 1);
 	print_map(&map);
 
@@ -330,3 +330,132 @@ while(game_finished(&map) == 0){
 	print_map(&map);
 }
 }
+*/
+
+/*
+int player_super_smart(Map* map, int player){
+	Map temp_map = *map;
+	int R = 0;
+    int G = 0;
+    int B = 0;
+    int Y = 0;
+    int M = 0;
+    int C = 0;
+    int W = 0;
+    int L[7] = {R, G, B, Y, M, C, W};
+	int conteur = 0;
+	for (int k = 0; k < sizeof(L)/sizeof(L[0]); k++){
+		update_map(&temp_map, k + 3, player);
+		conteur = 0;
+		for (int i = 0; i < map -> size; i++){
+			for (int j = 0; j < map -> size; j++){
+				if (get_map_value(&temp_map, i, j) == 1){
+					conteur++;
+				}
+			}
+		}
+		L[k] = conteur;
+	}
+	int indice = 0;
+	int max = L[0];
+	for (int k = 1; k < sizeof(L)/sizeof(L[0]); k++){
+		if (max < L[k]){
+			max = L[k];
+			indice = k;
+		}
+	}
+	return (indice + 3);
+}
+*/
+
+Map copy_map(Map* map){
+	Map copy = {.map = NULL, .size = 0};
+	create_empty_map (&copy, map -> size);
+	for (int i = 0; i < map -> size; i++){
+		for (int j = 0; j < map -> size; j++){
+			set_map_value(&copy, i, j, get_map_value(map, i, j));
+		}
+	}
+	return copy;
+}
+
+int player_super_smart(Map* map, int player) {
+    int R = 0;
+    int G = 0;
+    int B = 0;
+    int Y = 0;
+    int M = 0;
+    int C = 0;
+    int W = 0;
+    int L[7] = {R, G, B, Y, M, C, W};
+    int conteur = 0;
+
+    for (int k = 0; k < sizeof(L) / sizeof(L[0]); k++) {
+		Map temp_map = copy_map(map);
+        update_map(&temp_map, k + 3, player); //Modifie la copie de la carte
+        conteur = 0;
+        for (int i = 0; i < temp_map.size; i++) {
+            for (int j = 0; j < temp_map.size; j++) {
+                if (get_map_value(&temp_map, i, j) == 1) {
+                    conteur++;
+                }
+            }
+        }
+        L[k] = conteur;
+    }
+
+    int indice = 0;
+    int max = L[0];
+
+    for (int k = 1; k < sizeof(L) / sizeof(L[0]); k++) {
+        if (max < L[k]) {
+            max = L[k];
+            indice = k;
+        }
+    }
+
+    return (indice + 3);
+}
+
+int main(int argc, char** argv){
+	int n;
+	create_empty_map(&map, 3);
+	fill_map(&map);
+	print_map(&map);
+
+while(game_finished(&map) == 0){
+	printf("%i", player_super_smart(&map, 1));
+	printf("\n");
+
+	update_map(&map, player_smart(&map, 1), 1);
+	print_map(&map);
+
+	printf("Joueur 2 quelle couleur choisis-tu? ");
+	scanf("%d",&n);
+	update_map(&map, n, 2);
+	print_map(&map);
+}
+}
+
+
+/*
+int main(int argc, char** argv){
+	int n;
+	create_empty_map(&map, 3);
+	fill_map(&map);
+	print_map(&map);
+
+while(game_finished(&map) == 0){
+	printf("%i", player_smart(&map, 1));
+	printf("\n");
+
+	update_map(&map, player_smart(&map, 1), 1);
+	print_map(&map);
+
+	printf("Joueur 2 quelle couleur choisis-tu? ");
+	scanf("%d",&n);
+	update_map(&map, n, 2);
+	print_map(&map);
+}
+}
+*/
