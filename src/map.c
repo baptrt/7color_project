@@ -221,6 +221,5 @@ void update_map(Map* map, Color value, int player){
 }
 }
 }
-
-//Conteur de changement 
+ 
 
