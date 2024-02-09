@@ -275,13 +275,14 @@ int player_smart(Map* map, int player){
 
     int a = 0; 
     int i = 0;
+/*
     int total_zeros = 0;
     for (int k = 0; k < 7; k++) {
         if (L[k] == 0) {
             total_zeros++;
         }
     }
-
+*/
     while (a == 0){
         i = rand() % 7;
         a = L[i];
