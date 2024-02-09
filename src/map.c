@@ -74,11 +74,11 @@ int main(int argc, char** argv){
 }
 */
 
-//MAIN
+//MAIN (Question 5)
 
 int main(int argc, char** argv){
 	int n;
-	create_empty_map(&map, 10);
+	create_empty_map(&map, 2);
 	fill_map(&map);
 	print_map(&map);
 
@@ -212,7 +212,6 @@ void update_map(Map* map, Color value, int player){
 int game_finished(Map* map){
 	int player1 = 0;
 	int player2 = 0;
-	int players[] = {player1, player2};
 	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
 			if (get_map_value(map, i, j) == 1){
@@ -223,11 +222,11 @@ int game_finished(Map* map){
 			}
 		}
 	}
-	if (players[0] >= floor((map -> size) * (map -> size))/2){
-		printf("Le joueur 1 a gagné\n");
+	if (player1 >= floor((map -> size) * (map -> size))/2){
+		printf("Le joueur 1 a gagné");
 		return 1;
 	}
-	if (players[1] >= floor((map -> size) * (map -> size))/2){
+	if (player2 >= floor((map -> size) * (map -> size))/2){
 		printf("Le joueur 2 a gagné\n");
 		return 1;
 	}
@@ -235,6 +234,3 @@ int game_finished(Map* map){
 		return 0;
 	}
 }
-
-//Question 5 : 
-
