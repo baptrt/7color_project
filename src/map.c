@@ -1,6 +1,7 @@
 #include "../head/map.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h> //Afin d'utiliser la fonction strcmp pour comparer des chaînes de caractères
 #include <time.h> //Afin d'initialiser la fonction rand 
 
 
@@ -68,25 +69,50 @@ set_map_value(map, map -> size - 1, 0, 2);
 void print_map(Map* map);
 void update_map(Map* map, Color value, int player);
 
+int couleur_indice(char couleur, char* tableau){
+	int k = 0;
+	for (int i = 0; i < sizeof(tableau); i++){
+		if (strcmp(&tableau[i], &couleur) == 0){
+			k = i;
+		}
+	}
+	return k;
+}
+
+//Tentative de jouer avec les couleurs
+/*
 int main(int argc, char** argv){
-	int RED = 3;
-	int GREEN = 4;
-	int BLUE = 5;
-	int YELLOW = 6;
-	int MAGENTA = 7;
-	int CYAN = 8;
-	int WHITE = 9;
-	int n;
+	char tableau_couleur = {"RED", "GREEN", "BLUE", "YELLOW", "MAGENTA", "CYAN", "WHITE"};
+	char n;
+	int k = 1;
 
 	create_empty_map(&map, 10);
 	fill_map(&map);
 	print_map(&map);
 
 	printf("Joueur 1 quelle couleur choisis-tu? ");
-	scanf("%d", &n);
+	scanf("%s",&n);
+	update_map(&map, couleur_indice(n, &tableau_couleur), 1);
+	print_map(&map);
+
+}
+*/
+
+int main(int argc, char** argv){
+	int n;
+	int k = 1;
+
+	create_empty_map(&map, 10);
+	fill_map(&map);
+	print_map(&map);
+
+	printf("Joueur 1 quelle couleur choisis-tu? ");
+	scanf("%d",&n);
 	update_map(&map, n, 1);
 	print_map(&map);
+
 }
+
 
 //Question 2 : Affichage dans le terminal de l'état actuel de la partie avec des lettres
 /*
@@ -165,22 +191,36 @@ void print_map(Map* map){
 
 //Question 3 : 
 void update_map(Map* map, Color value, int player){
+	int m = 1;
+	while (m == 1){
  	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
 			if (get_map_value(map, i, j) == player){
-				if ((i < map -> size - 1) && (get_map_value(map, i + 1, j) == value)){
+				if ((i < map -> size - 1) && (get_map_value(map, i + 1, j) == value)){					
 					set_map_value (map, i + 1, j, player);
-				}
+					m = 1;
+					}
 				if ((j < map -> size - 1) && (get_map_value(map, i, j + 1) == value)){
 					set_map_value (map, i, j + 1, player);
-				}
+					m = 1;
+					}
 				if ((i > 0) && (get_map_value(map, i - 1, j) == value)){
 					set_map_value (map, i - 1, j, player);
-				}
+					m = 1;
+					}
 				if ((j > 0) && get_map_value(map, i, j - 1) == value){
 					set_map_value (map, i, j - 1, player);
+					m = 1;	
+					}
+				else {
+					m = 0;
 				}
 			}
 		}	
+
 }
 }
+}
+
+//Conteur de changement 
+

@@ -1,4 +1,4 @@
-FLAGS=-Wall -Werror -lm -g
+FLAGS=-Wall -Werrors -g
 
 7color : o/map.o
 	gcc $(FLAGS) o/map.o -o 7color
