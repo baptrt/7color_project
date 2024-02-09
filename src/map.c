@@ -5,33 +5,6 @@
 #include <string.h> //Afin d'utiliser la fonction strcmp pour comparer des chaînes de caractères
 #include <time.h> //Afin d'initialiser la fonction rand 
 
-
-
-/*
-	maVariable  =  valeur de ma variable
-	&maVariable   =  adresse de la variable
-	*monPointeur  =  valeur de la variable pointee
-	monPointeur = adresse de la variable pointée
-	
-	int Mateo = 5;
-	int* a = &Mateo;
-	print(a) --> 4 rue de Roumanie
-	print(*a) = 5;
-	print(&Mateo) = 4 rue de Roumanie
-
-	*a = 4;
-	print(Mateo) = 4
-	print(&a) =  11 avenue Robert Schumann
-
-
-	void changement(int* pointeurdelavariable, int valeurDuChangement)
-	{
-		*pointeurdelavariable = valeurDuChangement;
-
-	}
-
-	Mateo = changement(Mateo, 4);
-*/
 Map map = {.map = NULL, .size = 0};
 
 //Question 1 : 
@@ -101,6 +74,8 @@ int main(int argc, char** argv){
 }
 */
 
+//MAIN
+
 int main(int argc, char** argv){
 	int n;
 	create_empty_map(&map, 10);
@@ -122,6 +97,7 @@ while(game_finished(&map) == 0){
 
 
 //Question 2 : Affichage dans le terminal de l'état actuel de la partie avec des lettres
+
 /*
 void print_map(Map* map){
 	for (int i = 0; i < map -> size; i++){
@@ -160,6 +136,7 @@ void print_map(Map* map){
 */
 
 //Question 2 : Affichage dans le terminal de l'état actuel de la partie en couleur
+
 void print_map(Map* map){
 	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
@@ -197,6 +174,7 @@ void print_map(Map* map){
 }
 
 //Question 3 : 
+
 void update_map(Map* map, Color value, int player){
 	int m = 1;
 	while (m == 1){
@@ -257,3 +235,6 @@ int game_finished(Map* map){
 		return 0;
 	}
 }
+
+//Question 5 : 
+
