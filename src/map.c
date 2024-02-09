@@ -275,40 +275,12 @@ int player_smart(Map* map, int player){
 
     int a = 0; 
     int i = 0;
-/*
-    int total_zeros = 0;
-    for (int k = 0; k < 7; k++) {
-        if (L[k] == 0) {
-            total_zeros++;
-        }
-    }
-*/
     while (a == 0){
         i = rand() % 7;
         a = L[i];
     }
     return i + 3;
 }
-
-	/*
-	int m = 0; 
-	for (int p = 0; p < sizeof(L); p++){
-		if (L[p] == 0){
-			m = m + 1;
-		}
-	}
-	int length_possibilities = sizeof(L) - m;
-	int possibilities [length_possibilities];
-	for (int l = 0; l < sizeof(L); l++) {
-    	if (L[l] != 0) {
-			int positive_term = 0;
-        	possibilities[positive_term] = l;
-            positive_term = positive_term + 1;
-			}
-	}
-	int n = rand() % length_possibilities;
-	return (possibilities[n] + 3);
-	*/
 
 /*
 int main(int argc, char** argv){
@@ -329,42 +301,6 @@ while(game_finished(&map) == 0){
 	update_map(&map, n, 2);
 	print_map(&map);
 }
-}
-*/
-
-/*
-int player_super_smart(Map* map, int player){
-	Map temp_map = *map;
-	int R = 0;
-    int G = 0;
-    int B = 0;
-    int Y = 0;
-    int M = 0;
-    int C = 0;
-    int W = 0;
-    int L[7] = {R, G, B, Y, M, C, W};
-	int conteur = 0;
-	for (int k = 0; k < sizeof(L)/sizeof(L[0]); k++){
-		update_map(&temp_map, k + 3, player);
-		conteur = 0;
-		for (int i = 0; i < map -> size; i++){
-			for (int j = 0; j < map -> size; j++){
-				if (get_map_value(&temp_map, i, j) == 1){
-					conteur++;
-				}
-			}
-		}
-		L[k] = conteur;
-	}
-	int indice = 0;
-	int max = L[0];
-	for (int k = 1; k < sizeof(L)/sizeof(L[0]); k++){
-		if (max < L[k]){
-			max = L[k];
-			indice = k;
-		}
-	}
-	return (indice + 3);
 }
 */
 
@@ -438,26 +374,3 @@ while(game_finished(&map) == 0){
 	print_map(&map);
 }
 }
-
-
-/*
-int main(int argc, char** argv){
-	int n;
-	create_empty_map(&map, 3);
-	fill_map(&map);
-	print_map(&map);
-
-while(game_finished(&map) == 0){
-	printf("%i", player_smart(&map, 1));
-	printf("\n");
-
-	update_map(&map, player_smart(&map, 1), 1);
-	print_map(&map);
-
-	printf("Joueur 2 quelle couleur choisis-tu? ");
-	scanf("%d",&n);
-	update_map(&map, n, 2);
-	print_map(&map);
-}
-}
-*/
