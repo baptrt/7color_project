@@ -76,6 +76,7 @@ int main(int argc, char** argv){
 
 //MAIN (Question 5)
 
+/*
 int main(int argc, char** argv){
 	int n;
 	create_empty_map(&map, 2);
@@ -94,7 +95,7 @@ while(game_finished(&map) == 0){
 	print_map(&map);
 }
 }
-
+*/
 
 //Question 2 : Affichage dans le terminal de l'état actuel de la partie avec des lettres
 
@@ -178,33 +179,32 @@ void print_map(Map* map){
 void update_map(Map* map, Color value, int player){
 	int m = 1;
 	while (m == 1){
- 	for (int i = 0; i < map -> size; i++){
-		for (int j = 0; j < map -> size; j++){
-			if (get_map_value(map, i, j) == player){
-				if ((i < map -> size - 1) && (get_map_value(map, i + 1, j) == value)){					
-					set_map_value (map, i + 1, j, player);
-					m = 1;
+ 		for (int i = 0; i < map -> size; i++){
+			for (int j = 0; j < map -> size; j++){
+				if (get_map_value(map, i, j) == player){
+					if ((i < map -> size - 1) && (get_map_value(map, i + 1, j) == value)){					
+						set_map_value (map, i + 1, j, player);
+						m = 1;
+						}
+					if ((j < map -> size - 1) && (get_map_value(map, i, j + 1) == value)){
+						set_map_value (map, i, j + 1, player);
+						m = 1;
+						}
+					if ((i > 0) && (get_map_value(map, i - 1, j) == value)){
+						set_map_value (map, i - 1, j, player);
+						m = 1;
+						}
+					if ((j > 0) && get_map_value(map, i, j - 1) == value){
+						set_map_value (map, i, j - 1, player);
+						m = 1;	
+						}
+					else {
+						m = 0;
 					}
-				if ((j < map -> size - 1) && (get_map_value(map, i, j + 1) == value)){
-					set_map_value (map, i, j + 1, player);
-					m = 1;
-					}
-				if ((i > 0) && (get_map_value(map, i - 1, j) == value)){
-					set_map_value (map, i - 1, j, player);
-					m = 1;
-					}
-				if ((j > 0) && get_map_value(map, i, j - 1) == value){
-					set_map_value (map, i, j - 1, player);
-					m = 1;	
-					}
-				else {
-					m = 0;
 				}
-			}
-		}	
-
-}
-}
+			}	
+		}
+	}
 }
 
 //Question 4 : Fin de partie
@@ -238,6 +238,81 @@ int game_finished(Map* map){
 //Question 6 : IA qui joue au hasard
 
 int player_random(){
+	srand(time(NULL));
 	return (rand()%7 + 3);
 }
 
+//Question 7 : IA glouton 
+
+int player_smart(Map* map, int player){
+	int R = 0;
+	int G = 0;
+	int B = 0;
+	int Y = 0;
+	int M = 0;
+	int C = 0;
+	int W = 0;
+	int L[7] = {R, G, B, Y, M, C, W};
+ 	for (int i = 0; i < map -> size; i++){
+		for (int j = 0; j < map -> size; j++){
+			if (get_map_value(map, i, j) == player){
+				if (i>0){
+					L[get_map_value(map, i-1, j) - 3] = L[get_map_value(map, i-1, j) - 3] + 1;
+				}
+				if (j>0){
+					L[get_map_value(map, i, j-1) - 3] = L[get_map_value(map, i, j-1) - 3] + 1;
+				}
+				if (j < map -> size){
+					L[get_map_value(map, i, j+1) - 3] = L[get_map_value(map, i, j+1) - 3] + 1;
+				}
+				if (i < map -> size){
+					L[get_map_value(map, i+1, j) - 3] = L[get_map_value(map, i+1, j) - 3] + 1;
+				}
+			}
+		}
+	}
+	int a = 0; 
+	while (a == 0){
+		a = L[rand()%7];
+	}
+	return a + 3;
+
+	/*
+	int m = 0; 
+	for (int p = 0; p < sizeof(L); p++){
+		if (L[p] == 0){
+			m = m + 1;
+		}
+	}
+	int length_possibilities = sizeof(L) - m;
+	int possibilities [length_possibilities];
+	for (int l = 0; l < sizeof(L); l++) {
+    	if (L[l] != 0) {
+			int positive_term = 0;
+        	possibilities[positive_term] = l;
+            positive_term = positive_term + 1;
+			}
+	}
+	int n = rand() % length_possibilities;
+	return (possibilities[n] + 3);
+	*/
+}
+
+int main(int argc, char** argv){
+	int n;
+	create_empty_map(&map, 3);
+	fill_map(&map);
+	print_map(&map);
+
+while(game_finished(&map) == 0){
+	printf("%i", player_smart(&map, 1));
+	printf("\n");
+	update_map(&map, player_smart(&map, 1), 1);
+	print_map(&map);
+
+	printf("Joueur 2 quelle couleur choisis-tu? ");
+	scanf("%d",&n);
+	update_map(&map, n, 2);
+	print_map(&map);
+}
+}
