@@ -320,6 +320,7 @@ int main(int argc, char** argv){
 while(game_finished(&map) == 0){
 	printf("%i", player_smart(&map, 1));
 	printf("\n");
+	
 	update_map(&map, player_smart(&map, 1), 1);
 	print_map(&map);
 
