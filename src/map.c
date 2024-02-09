@@ -207,7 +207,7 @@ void update_map(Map* map, Color value, int player){
 }
 }
 
-//Question 4 : 
+//Question 4 : Fin de partie
 
 int game_finished(Map* map){
 	int player1 = 0;
@@ -234,3 +234,10 @@ int game_finished(Map* map){
 		return 0;
 	}
 }
+
+//Question 6 : IA qui joue au hasard
+
+int player_random(){
+	return (rand()%7 + 3);
+}
+
