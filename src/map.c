@@ -245,37 +245,49 @@ int player_random(){
 //Question 7 : IA glouton 
 
 int player_smart(Map* map, int player){
-	int R = 0;
-	int G = 0;
-	int B = 0;
-	int Y = 0;
-	int M = 0;
-	int C = 0;
-	int W = 0;
-	int L[7] = {R, G, B, Y, M, C, W};
- 	for (int i = 0; i < map -> size; i++){
-		for (int j = 0; j < map -> size; j++){
-			if (get_map_value(map, i, j) == player){
-				if (i>0){
-					L[get_map_value(map, i-1, j) - 3] = L[get_map_value(map, i-1, j) - 3] + 1;
-				}
-				if (j>0){
-					L[get_map_value(map, i, j-1) - 3] = L[get_map_value(map, i, j-1) - 3] + 1;
-				}
-				if (j < map -> size){
-					L[get_map_value(map, i, j+1) - 3] = L[get_map_value(map, i, j+1) - 3] + 1;
-				}
-				if (i < map -> size){
-					L[get_map_value(map, i+1, j) - 3] = L[get_map_value(map, i+1, j) - 3] + 1;
-				}
-			}
-		}
-	}
-	int a = 0; 
-	while (a == 0){
-		a = L[rand()%7];
-	}
-	return a + 3;
+    int R = 0;
+    int G = 0;
+    int B = 0;
+    int Y = 0;
+    int M = 0;
+    int C = 0;
+    int W = 0;
+    int L[7] = {R, G, B, Y, M, C, W};
+    
+    for (int i = 0; i < map -> size; i++){
+        for (int j = 0; j < map -> size; j++){
+            if (get_map_value(map, i, j) == player){
+                if (i > 0){
+                    L[get_map_value(map, i-1, j) - 3]++;
+                }
+                if (j > 0){
+                    L[get_map_value(map, i, j-1) - 3]++;
+                }
+                if (j < map -> size - 1){
+                    L[get_map_value(map, i, j+1) - 3]++;
+                }
+                if (i < map -> size - 1){
+                    L[get_map_value(map, i+1, j) - 3]++;
+                }
+            }
+        }
+    }
+
+    int a = 0; 
+    int i = 0;
+    int total_zeros = 0;
+    for (int k = 0; k < 7; k++) {
+        if (L[k] == 0) {
+            total_zeros++;
+        }
+    }
+
+    while (a == 0){
+        i = rand() % 7;
+        a = L[i];
+    }
+    return i + 3;
+}
 
 	/*
 	int m = 0; 
@@ -296,7 +308,7 @@ int player_smart(Map* map, int player){
 	int n = rand() % length_possibilities;
 	return (possibilities[n] + 3);
 	*/
-}
+
 
 int main(int argc, char** argv){
 	int n;
