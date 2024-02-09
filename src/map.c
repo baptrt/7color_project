@@ -368,6 +368,8 @@ int player_super_smart(Map* map, int player){
 }
 */
 
+//Question 8 :
+
 Map copy_map(Map* map){
 	Map copy = {.map = NULL, .size = 0};
 	create_empty_map (&copy, map -> size);
