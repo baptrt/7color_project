@@ -1,6 +1,7 @@
 #include "../head/map.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h> //Afin d'utiliser la fonction floor
 #include <string.h> //Afin d'utiliser la fonction strcmp pour comparer des chaînes de caractères
 #include <time.h> //Afin d'initialiser la fonction rand 
 
@@ -68,6 +69,8 @@ set_map_value(map, map -> size - 1, 0, 2);
 
 void print_map(Map* map);
 void update_map(Map* map, Color value, int player);
+int* compteur(Map* map);
+int game_finished(Map* map);
 
 int couleur_indice(char couleur, char* tableau){
 	int k = 0;
@@ -100,17 +103,21 @@ int main(int argc, char** argv){
 
 int main(int argc, char** argv){
 	int n;
-	int k = 1;
-
 	create_empty_map(&map, 10);
 	fill_map(&map);
 	print_map(&map);
 
+while(game_finished(&map) == 0){
 	printf("Joueur 1 quelle couleur choisis-tu? ");
 	scanf("%d",&n);
 	update_map(&map, n, 1);
 	print_map(&map);
 
+	printf("Joueur 2 quelle couleur choisis-tu? ");
+	scanf("%d",&n);
+	update_map(&map, n, 2);
+	print_map(&map);
+}
 }
 
 
@@ -221,5 +228,32 @@ void update_map(Map* map, Color value, int player){
 }
 }
 }
- 
 
+//Question 4 : 
+
+int game_finished(Map* map){
+	int player1 = 0;
+	int player2 = 0;
+	int players[] = {player1, player2};
+	for (int i = 0; i < map -> size; i++){
+		for (int j = 0; j < map -> size; j++){
+			if (get_map_value(map, i, j) == 1){
+				player1 += 1; 
+			}
+			if (get_map_value(map, i, j) == 2){
+				player2 += 1; 
+			}
+		}
+	}
+	if (players[0] >= floor((map -> size) * (map -> size))/2){
+		printf("Le joueur 1 a gagné\n");
+		return 1;
+	}
+	if (players[1] >= floor((map -> size) * (map -> size))/2){
+		printf("Le joueur 2 a gagné\n");
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
