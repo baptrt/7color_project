@@ -178,10 +178,11 @@ void print_map(Map* map){
 
 void update_map(Map* map, Color value, int player){
 	int m = 1;
-	while (m == 1){
- 		for (int i = 0; i < map -> size; i++){
-			for (int j = 0; j < map -> size; j++){
-				if (get_map_value(map, i, j) == player){
+	while (m){
+		m = 0;
+		for (int i = 0; i < map->size; i++) {
+       		for (int j = 0; j < map->size; j++) {
+            	if (get_map_value(map, i, j) == player) {
 					if ((i < map -> size - 1) && (get_map_value(map, i + 1, j) == value)){					
 						set_map_value (map, i + 1, j, player);
 						m = 1;
@@ -196,16 +197,14 @@ void update_map(Map* map, Color value, int player){
 						}
 					if ((j > 0) && get_map_value(map, i, j - 1) == value){
 						set_map_value (map, i, j - 1, player);
-						m = 1;	
+						m = 1;
 						}
-					else {
-						m = 0;
-					}
 				}
-			}	
+			}
 		}
 	}
 }
+
 
 //Question 4 : Fin de partie
 
@@ -357,7 +356,7 @@ int player_super_smart(Map* map, int player) {
 
 int main(int argc, char** argv){
 	int n;
-	create_empty_map(&map, 3);
+	create_empty_map(&map, 10);
 	fill_map(&map);
 	print_map(&map);
 
@@ -365,7 +364,7 @@ while(game_finished(&map) == 0){
 	printf("%i", player_super_smart(&map, 1));
 	printf("\n");
 
-	update_map(&map, player_smart(&map, 1), 1);
+	update_map(&map, player_super_smart(&map, 1), 1);
 	print_map(&map);
 
 	printf("Joueur 2 quelle couleur choisis-tu? ");
