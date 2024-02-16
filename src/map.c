@@ -27,7 +27,6 @@ Color get_map_value (Map* map, int x, int y){
 }
 
 void fill_map(Map* map){
-	srand(time(NULL));
 	int n = 0;
 	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
@@ -198,7 +197,7 @@ void update_map(Map* map, Color value, int player){
 					if ((j > 0) && get_map_value(map, i, j - 1) == value){
 						set_map_value (map, i, j - 1, player);
 						m = 1;
-						}
+					}
 				}
 			}
 		}
@@ -237,7 +236,6 @@ int game_finished(Map* map){
 //Question 6 : IA qui joue au hasard
 
 int player_random(){
-	srand(time(NULL));
 	return (rand()%7 + 3);
 }
 
@@ -333,7 +331,7 @@ int player_super_smart(Map* map, int player) {
         conteur = 0;
         for (int i = 0; i < temp_map.size; i++) {
             for (int j = 0; j < temp_map.size; j++) {
-                if (get_map_value(&temp_map, i, j) == 1) {
+                if (get_map_value(&temp_map, i, j) == player) {
                     conteur++;
                 }
             }
@@ -362,16 +360,17 @@ int main(int argc, char** argv){
 	print_map(&map);
 
 while(game_finished(&map) == 0){
-	printf("%i", player_super_smart(&map, 1));
+	printf("Joueur 1 quelle couleur choisis-tu? ");
+	scanf("%d",&n);
+	update_map(&map, n, 1);
+	print_map(&map);
+
+	printf("%i", player_super_smart(&map, 2));
 	printf("\n");
 
-	update_map(&map, player_super_smart(&map, 1), 1);
+	update_map(&map, player_super_smart(&map, 2), 2);
 	print_map(&map);
 
-	printf("Joueur 2 quelle couleur choisis-tu? ");
-	scanf("%d",&n);
-	update_map(&map, n, 2);
-	print_map(&map);
 }
 }
 */
@@ -381,13 +380,14 @@ while(game_finished(&map) == 0){
 int main(int argc, char** argv){
 	int compteur_1 = 0;
 	int compteur_2 = 0;
+	srand(time(NULL));
 
 	for (int k = 0; k<500; k++){
-		create_empty_map(&map, 10);
+		create_empty_map(&map, 15);
 		fill_map(&map);
 			while (game_finished(&map) == 0){
-				update_map(&map, player_super_smart(&map, 1), 1);
-				update_map(&map, player_random(), 2);
+				update_map(&map, player_super_smart(), 1);
+				update_map(&map, player_rand(), 2);
 			}
 			if (game_finished(&map) == 1){
 				compteur_1++;
@@ -399,5 +399,4 @@ int main(int argc, char** argv){
 	printf("Le joueur intelligent a gagné %i fois sur 500 parties", compteur_1);
 	printf("\n");
 	printf("Le joueur qui joue au hasard a gagné %i fois sur 500 parties", compteur_2);
-
 }
