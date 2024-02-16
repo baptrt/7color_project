@@ -386,7 +386,7 @@ int main(int argc, char** argv){
 		create_empty_map(&map, 15);
 		fill_map(&map);
 			while (game_finished(&map) == 0){
-				update_map(&map, player_super_smart(), 1);
+				update_map(&map, player_super_smart(&map, 1), 1);
 				update_map(&map, player_rand(), 2);
 			}
 			if (game_finished(&map) == 1){
