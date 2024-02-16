@@ -222,12 +222,12 @@ int game_finished(Map* map){
 		}
 	}
 	if (player1 >= floor((map -> size) * (map -> size))/2){
-		printf("Le joueur 1 a gagné");
+		//printf("Le joueur 1 a gagné");
 		return 1;
 	}
 	if (player2 >= floor((map -> size) * (map -> size))/2){
-		printf("Le joueur 2 a gagné\n");
-		return 1;
+		//printf("Le joueur 2 a gagné");
+		return 2;
 	}
 	else{
 		return 0;
@@ -354,6 +354,7 @@ int player_super_smart(Map* map, int player) {
     return (indice + 3);
 }
 
+/*
 int main(int argc, char** argv){
 	int n;
 	create_empty_map(&map, 10);
@@ -372,4 +373,31 @@ while(game_finished(&map) == 0){
 	update_map(&map, n, 2);
 	print_map(&map);
 }
+}
+*/
+
+//Question 9 : Affrontement des deux joueurs 
+
+int main(int argc, char** argv){
+	int compteur_1 = 0;
+	int compteur_2 = 0;
+
+	for (int k = 0; k<500; k++){
+		create_empty_map(&map, 10);
+		fill_map(&map);
+			while (game_finished(&map) == 0){
+				update_map(&map, player_super_smart(&map, 1), 1);
+				update_map(&map, player_random(), 2);
+			}
+			if (game_finished(&map) == 1){
+				compteur_1++;
+			}
+			if (game_finished(&map) == 2){
+				compteur_2++;
+			}
+		}
+	printf("Le joueur intelligent a gagné %i fois sur 500 parties", compteur_1);
+	printf("\n");
+	printf("Le joueur qui joue au hasard a gagné %i fois sur 500 parties", compteur_2);
+
 }
