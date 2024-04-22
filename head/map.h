@@ -21,7 +21,7 @@ typedef struct Map{
 } Map;
 
 
-void create_empty_map (Map* map, int size);
+void create_empty_map(Map* map, int size);
 
 void set_map_value (Map* map, int x, int y, Color value);
 
