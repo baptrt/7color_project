@@ -54,7 +54,6 @@ int couleur_indice(char couleur, char* tableau){
 
 //Mise à jour de la map 
 
-
 void update_map(Map* map, Color value, int player){
 	int m = 1;
 	while (m){

@@ -10,6 +10,23 @@ int player_random(){
 
 //Joueur glouton
 
+int random_non_zero_index(int L[], int size){
+    int non_zero_indices[size];
+    int count = 0;
+
+    // Parcourez le tableau pour trouver les indices des éléments non nuls
+    for (int i = 0; i < size; i++) {
+        if (L[i] != 0) {
+            non_zero_indices[count++] = i;
+        }
+    }
+
+    // Sélectionnez un indice au hasard parmi les indices des éléments non nuls
+    int random_index = non_zero_indices[rand() % count];
+
+    return random_index;
+}
+
 int player_smart(Map* map, int player){
     int R = 0;
     int G = 0;
@@ -22,33 +39,27 @@ int player_smart(Map* map, int player){
     
     for (int i = 0; i < map -> size; i++){
         for (int j = 0; j < map -> size; j++){
-            if (get_map_value(map, i, j) == player){
-                if (i > 0){
+            int current_color = get_map_value(map, i, j);
+            if (current_color == player){
+                if (i > 0 && get_map_value(map, i-1, j) > 2){
                     L[get_map_value(map, i-1, j) - 3]++;
                 }
-                if (j > 0){
+                if (j > 0 && get_map_value(map, i, j-1) > 2){
                     L[get_map_value(map, i, j-1) - 3]++;
                 }
-                if (j < map -> size - 1){
+                if (j < map -> size - 1 && get_map_value(map, i, j+1) > 2){
                     L[get_map_value(map, i, j+1) - 3]++;
                 }
-                if (i < map -> size - 1){
+                if (i < map -> size - 1 && get_map_value(map, i+1, j) > 2){
                     L[get_map_value(map, i+1, j) - 3]++;
                 }
             }
         }
     }
-
-    int a = 0; 
-    int i = 0;
-    while (a == 0){
-        i = rand() % 7;
-        a = L[i];
-    }
-    return i + 3;
+    return random_non_zero_index(L,7) + 3;
 }
 
-//Joueur intelligent v
+//Joueur intelligent
 
 Map copy_map(Map* map){
 	Map copy = {.map = NULL, .size = 0};

@@ -86,8 +86,6 @@ int main(int argc, char** argv){
 		}
 	}
 
-
-
 	if (i ==  4){
 		int compteur_1 = 0;
 		int compteur_2 = 0;
@@ -101,11 +99,9 @@ int main(int argc, char** argv){
 					update_map(&map, player_smart(&map, 2), 2);
 				}
 				if (game_finished(&map) == 1){
-					print_map(&map);
 					compteur_1++;
 				}
 				if (game_finished(&map) == 2){
-					print_map(&map);
 					compteur_2++;
 				}
 			}
