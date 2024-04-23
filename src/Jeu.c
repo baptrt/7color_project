@@ -41,6 +41,7 @@ void Gr7_print_map(Map* map){
 
 //Récupération de l'indice associé à une couleur 
 
+
 int Gr7_couleur_indice(char couleur, char* tableau){
 	int k = 0;
 	for (int i = 0; i < sizeof(tableau); i++){
@@ -96,6 +97,10 @@ int Gr7_game_finished(Map* map){
 				player2 += 1; 
 			}
 		}
+	}
+	if (player1 == floor((map -> size) * (map -> size))/2 && player2 == floor((map -> size) * (map -> size))/2){
+		//printf("Le joueur 1 a gagné");
+		return -1;
 	}
 	if (player1 >= floor((map -> size) * (map -> size))/2){
 		//printf("Le joueur 1 a gagné");
