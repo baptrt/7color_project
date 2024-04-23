@@ -51,9 +51,7 @@ int main(int argc, char** argv){
 	scanf("%d",&i);
 
 	if (i == 0){
-		char tableau_couleur = {"RED", "GREEN", "BLUE", "YELLOW", "MAGENTA", "CYAN", "WHITE"};
-		char n;
-		int k = 1;
+		srand(time(NULL));
 
 		create_empty_map(&map, 10);
 		fill_map(&map);
@@ -61,6 +59,7 @@ int main(int argc, char** argv){
 	}
 
 	if (i == 1){
+		srand(time(NULL));
 		int n;
 		create_empty_map(&map, 10);
 		fill_map(&map);
@@ -80,6 +79,7 @@ int main(int argc, char** argv){
 }
 
 	if (i == 2){
+		srand(time(NULL));
 		int n;
 		create_empty_map(&map, 10);
 		fill_map(&map);
@@ -102,6 +102,7 @@ int main(int argc, char** argv){
 	}
 
 	if (i == 3){
+		srand(time(NULL));
 		create_empty_map(&map, 10);
 		fill_map(&map);
 

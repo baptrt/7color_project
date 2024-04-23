@@ -13,25 +13,25 @@ void Gr7_print_map(Map* map){
 				printf("2");
 			}
 			if (get_map_value (map, i, j) == 3){
-				printf("\033[1;31m■\033[0m");
+				printf("\033[1;41m3\033[0m");
 			}
 			if (get_map_value (map, i, j) == 4){
-				printf("\033[1;32m■\033[0m");
+				printf("\033[1;42m4\033[0m");
 			}
 			if (get_map_value (map, i, j) == 5){
-				printf("\033[1;34m■\033[0m");
+				printf("\033[1;44m5\033[0m");
 			}
 			if (get_map_value (map, i, j) == 6){
-				printf("\033[1;33m■\033[0m");
+				printf("\033[1;43m6\033[0m");
 			}
 			if (get_map_value (map, i, j) == 7){
-				printf("\033[1;35m■\033[0m");
+				printf("\033[1;45m7\033[0m");
 			}
 			if (get_map_value (map, i, j) == 8){
-				printf("\033[1;36m■\033[0m");
+				printf("\033[1;46m8\033[0m");
 			}
 			if (get_map_value (map, i, j) == 9){
-				printf("\033[1;37m■\033[0m");
+				printf("\033[1;47m9\033[0m");
 			}
 		}
 		printf("\n");
