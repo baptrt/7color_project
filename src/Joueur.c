@@ -9,7 +9,7 @@ int Gr7_player_random(){
 
 //Joueur glouton
 
-int random_non_zero_index(int L[], int size){
+int Gr7_random_non_zero_index(int L[], int size){
     int non_zero_indices[size];
     int count = 0;
 
@@ -55,7 +55,7 @@ int Gr7_player_smart(Map* map, int player){
             }
         }
     }
-    return random_non_zero_index(L,7) + 3;
+    return Gr7_random_non_zero_index(L,7) + 3;
 }
 
 //Joueur intelligent
