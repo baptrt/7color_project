@@ -76,6 +76,15 @@ int main(int argc, char** argv){
 			Gr7_update_map(&map, n, 2);
 			Gr7_print_map(&map);
 		}
+		if (Gr7_game_finished(&map) == 1){
+			printf("Bravo joueur 1 tu as gagné");
+		}
+		if (Gr7_game_finished(&map) == 2){
+			printf("Bravo joueur 2 tu as gagné");
+		}
+		if (Gr7_game_finished(&map) == -1){
+			printf("Égalité");
+		}
 }
 
 	if (i == 2){
@@ -99,6 +108,9 @@ int main(int argc, char** argv){
 		if (Gr7_game_finished(&map) == 2){
 			printf("Bravo joueur 2 tu as gagné");
 		}
+		if (Gr7_game_finished(&map) == -1){
+			printf("Égalité");
+		}
 	}
 
 	if (i == 3){
@@ -120,11 +132,15 @@ int main(int argc, char** argv){
 		if (Gr7_game_finished(&map) == 2){
 			printf("Bravo joueur 2 tu as gagné");
 		}
+		if (Gr7_game_finished(&map) == -1){
+			printf("Égalité");
+		}
 	}
 
 	if (i ==  4){
 		int compteur_1 = 0;
 		int compteur_2 = 0;
+		int compteur_3 = 0;
 		srand(time(NULL));
 
 		for (int k = 0; k<500; k++){
@@ -140,10 +156,15 @@ int main(int argc, char** argv){
 				if (Gr7_game_finished(&map) == 2){
 					compteur_2++;
 				}
+				if (Gr7_game_finished(&map) == -1){
+					compteur_3++;
+				}
 			}
 		printf("Le joueur intelligent a gagné %i fois sur 500 parties", compteur_1);
 		printf("\n");
 		printf("Le joueur qui joue au hasard a gagné %i fois sur 500 parties", compteur_2);
+		printf("\n");
+		printf("Il y a eu %i égalité sur 500 parties", compteur_3);
 	}
 }
 
