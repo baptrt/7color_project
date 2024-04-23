@@ -80,20 +80,20 @@ int Gr7_player_super_smart(Map* map, int player){
     int C = 0;
     int W = 0;
     int L[7] = {R, G, B, Y, M, C, W};
-    int conteur = 0;
+    int compteur = 0;
 
     for (int k = 0; k < sizeof(L) / sizeof(L[0]); k++) {
 		Map temp_map = Gr7_copy_map(map);
         Gr7_update_map(&temp_map, k + 3, player); //Modifie la copie de la carte
-        conteur = 0;
+        compteur = 0;
         for (int i = 0; i < temp_map.size; i++) {
             for (int j = 0; j < temp_map.size; j++) {
                 if (get_map_value(&temp_map, i, j) == player) {
-                    conteur++;
+                    compteur++;
                 }
             }
         }
-        L[k] = conteur;
+        L[k] = compteur;
     }
 
     int indice = 0;
