@@ -108,3 +108,4 @@ int Gr7_player_super_smart(Map* map, int player){
 
     return (indice + 3);
 }
+
