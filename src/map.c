@@ -1,6 +1,5 @@
 #include "../head/map.h"
 #include "../head/Jeu.h"
-#include "../head/Affichage.h"
 #include "../head/Joueur.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -41,130 +40,109 @@ set_map_value(map, 0, map -> size - 1, 1);
 set_map_value(map, map -> size - 1, 0, 2);
 }
 
-//Tentative de jouer avec les couleurs
-/*
-int main1(int argc, char** argv){
-	char tableau_couleur = {"RED", "GREEN", "BLUE", "YELLOW", "MAGENTA", "CYAN", "WHITE"};
-	char n;
-	int k = 1;
+int main(int argc, char** argv){
+	int i = 0;
+	printf("En quel mode veux-tu jouer? \n");
+	printf("0 - Afficher la map \n");
+	printf("1 - Mode un contre un \n");
+	printf("2 - Mode un contre IA \n");
+	printf("3 - Mode affrontement d'IA \n");
+	printf("4 - Mode statistique affrontement d'IA \n");
+	scanf("%d",&i);
 
-	create_empty_map(&map, 10);
-	fill_map(&map);
-	print_map(&map);
+	if (i == 0){
+		char tableau_couleur = {"RED", "GREEN", "BLUE", "YELLOW", "MAGENTA", "CYAN", "WHITE"};
+		char n;
+		int k = 1;
 
-	printf("Joueur 1 quelle couleur choisis-tu? ");
-	scanf("%s",&n);
-	update_map(&map, couleur_indice(n, &tableau_couleur), 1);
-	print_map(&map);
+		create_empty_map(&map, 10);
+		fill_map(&map);
+		print_map(&map);
+	}
 
-}
-*/
+	if (i == 1){
+		int n;
+		create_empty_map(&map, 10);
+		fill_map(&map);
+		print_map(&map);
 
-//MAIN (Question 5)
+		while(game_finished(&map) == 0){
+			printf("Joueur 1 quelle couleur choisis-tu? ");
+			scanf("%d",&n);
+			update_map(&map, n, 1);
+			print_map(&map);
 
-/*
-int main2(int argc, char** argv){
-	int n;
-	create_empty_map(&map, 2);
-	fill_map(&map);
-	print_map(&map);
-
-while(game_finished(&map) == 0){
-	printf("Joueur 1 quelle couleur choisis-tu? ");
-	scanf("%d",&n);
-	update_map(&map, n, 1);
-	print_map(&map);
-
-	printf("Joueur 2 quelle couleur choisis-tu? ");
-	scanf("%d",&n);
-	update_map(&map, n, 2);
-	print_map(&map);
-}
-}
-*/
-
-//Question 2 : Affichage dans le terminal de l'état actuel de la partie avec des lettres
-
-/*
-void print_map(Map* map){
-	for (int i = 0; i < map -> size; i++){
-		for (int j = 0; j < map -> size; j++){
-			if (get_map_value (map, i, j) == 1){
-				printf("1");
-			}
-			if (get_map_value (map, i, j) == 2){
-				printf("2");
-			}
-			if (get_map_value (map, i, j) == 3){
-				printf("R");
-			}
-			if (get_map_value (map, i, j) == 4){
-				printf("G");
-			}
-			if (get_map_value (map, i, j) == 5){
-				printf("B");
-			}
-			if (get_map_value (map, i, j) == 6){
-				printf("Y");
-			}
-			if (get_map_value (map, i, j) == 7){
-				printf("M");
-			}
-			if (get_map_value (map, i, j) == 8){
-				printf("C");
-			}
-			if (get_map_value (map, i, j) == 9){
-				printf("W");
-			}
+			printf("Joueur 2 quelle couleur choisis-tu? ");
+			scanf("%d",&n);
+			update_map(&map, n, 2);
+			print_map(&map);
 		}
+}
+
+	if (i == 2){
+		int n;
+		create_empty_map(&map, 10);
+		fill_map(&map);
+		print_map(&map);
+
+		while(game_finished(&map) == 0){
+			printf("Joueur 1 quelle couleur choisis-tu? ");
+			scanf("%d",&n);
+			update_map(&map, n, 1);
+			print_map(&map);
+
+			update_map(&map, player_random(), 2);
+		}
+		if (game_finished(&map) == 1){
+			printf("Bravo joueur 1 tu as gagné");
+		}
+		if (game_finished(&map) == 2){
+			printf("Bravo joueur 2 tu as gagné");
+		}
+	}
+
+	if (i == 3){
+		create_empty_map(&map, 10);
+		fill_map(&map);
+
+		while(game_finished(&map) == 0){
+			update_map(&map, player_random(), 1);
+
+			update_map(&map, player_super_smart(&map, 2), 2);
+
+			print_map(&map);
+		}
+
+		if (game_finished(&map) == 1){
+			printf("Bravo joueur 1 tu as gagné");
+		}
+		if (game_finished(&map) == 2){
+			printf("Bravo joueur 2 tu as gagné");
+		}
+	}
+
+	if (i ==  4){
+		int compteur_1 = 0;
+		int compteur_2 = 0;
+		srand(time(NULL));
+
+		for (int k = 0; k<500; k++){
+			create_empty_map(&map, 15);
+			fill_map(&map);
+				while (game_finished(&map) == 0){
+					update_map(&map, player_super_smart(&map, 1), 1);
+					update_map(&map, player_smart(&map, 2), 2);
+				}
+				if (game_finished(&map) == 1){
+					compteur_1++;
+				}
+				if (game_finished(&map) == 2){
+					compteur_2++;
+				}
+			}
+		printf("Le joueur intelligent a gagné %i fois sur 500 parties", compteur_1);
 		printf("\n");
+		printf("Le joueur qui joue au hasard a gagné %i fois sur 500 parties", compteur_2);
 	}
 }
-*/
-
-/*
-int main(int argc, char** argv){
-	int n;
-	create_empty_map(&map, 3);
-	fill_map(&map);
-	print_map(&map);
-
-while(game_finished(&map) == 0){
-	printf("%i", player_smart(&map, 1));
-	printf("\n");
-
-	update_map(&map, player_smart(&map, 1), 1);
-	print_map(&map);
-
-	printf("Joueur 2 quelle couleur choisis-tu? ");
-	scanf("%d",&n);
-	update_map(&map, n, 2);
-	print_map(&map);
-}
-}
-*/
-
-
-/*
-int main(int argc, char** argv){
-	int n;
-	create_empty_map(&map, 10);
-	fill_map(&map);
-	print_map(&map);
-
-while(game_finished(&map) == 0){
-	printf("Joueur 1 quelle couleur choisis-tu? ");
-	scanf("%d",&n);
-	update_map(&map, n, 1);
-	print_map(&map);
-
-	printf("%i", player_super_smart(&map, 2));
-	printf("\n");
-
-	update_map(&map, player_super_smart(&map, 2), 2);
-	print_map(&map);
-
-}
-}
-*/
 

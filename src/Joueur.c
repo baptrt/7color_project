@@ -1,4 +1,3 @@
-#include "../head/Affichage.h"
 #include "../head/map.h"
 #include "../head/Jeu.h"
 
