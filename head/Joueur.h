@@ -5,10 +5,10 @@
 #include <string.h> //Afin d'utiliser la fonction strcmp pour comparer des chaînes de caractères
 #include <time.h> //Afin d'initialiser la fonction rand 
 
-int player_random();
+int Gr7_player_random();
 
-int player_smart(Map* map, int player);
+int Gr7_player_smart(Map* map, int player);
 
-Map copy_map(Map* map);
+Map Gr7_copy_map(Map* map);
 
-int player_super_smart(Map* map, int player);
+int Gr7_player_super_smart(Map* map, int player);

@@ -3,7 +3,7 @@
 
 //Joueur qui joue au hasard
 
-int player_random(){
+int Gr7_player_random(){
 	return (rand()%7 + 3);
 }
 
@@ -26,7 +26,7 @@ int random_non_zero_index(int L[], int size){
     return random_index;
 }
 
-int player_smart(Map* map, int player){
+int Gr7_player_smart(Map* map, int player){
     int R = 0;
     int G = 0;
     int B = 0;
@@ -60,7 +60,7 @@ int player_smart(Map* map, int player){
 
 //Joueur intelligent
 
-Map copy_map(Map* map){
+Map Gr7_copy_map(Map* map){
 	Map copy = {.map = NULL, .size = 0};
 	create_empty_map (&copy, map -> size);
 	for (int i = 0; i < map -> size; i++){
@@ -71,7 +71,7 @@ Map copy_map(Map* map){
 	return copy;
 }
 
-int player_super_smart(Map* map, int player){
+int Gr7_player_super_smart(Map* map, int player){
     int R = 0;
     int G = 0;
     int B = 0;
@@ -83,8 +83,8 @@ int player_super_smart(Map* map, int player){
     int conteur = 0;
 
     for (int k = 0; k < sizeof(L) / sizeof(L[0]); k++) {
-		Map temp_map = copy_map(map);
-        update_map(&temp_map, k + 3, player); //Modifie la copie de la carte
+		Map temp_map = Gr7_copy_map(map);
+        Gr7_update_map(&temp_map, k + 3, player); //Modifie la copie de la carte
         conteur = 0;
         for (int i = 0; i < temp_map.size; i++) {
             for (int j = 0; j < temp_map.size; j++) {

@@ -3,7 +3,7 @@
 
 //Création de la map dans le terminal
 
-void print_map(Map* map){
+void Gr7_print_map(Map* map){
 	for (int i = 0; i < map -> size; i++){
 		for (int j = 0; j < map -> size; j++){
 			if (get_map_value (map, i, j) == 1){
@@ -41,7 +41,7 @@ void print_map(Map* map){
 
 //Récupération de l'indice associé à une couleur 
 
-int couleur_indice(char couleur, char* tableau){
+int Gr7_couleur_indice(char couleur, char* tableau){
 	int k = 0;
 	for (int i = 0; i < sizeof(tableau); i++){
 		if (strcmp(&tableau[i], &couleur) == 0){
@@ -53,7 +53,7 @@ int couleur_indice(char couleur, char* tableau){
 
 //Mise à jour de la map 
 
-void update_map(Map* map, Color value, int player){
+void Gr7_update_map(Map* map, Color value, int player){
 	int m = 1;
 	while (m){
 		m = 0;
@@ -84,7 +84,7 @@ void update_map(Map* map, Color value, int player){
 
 //Fin de partie 
 
-int game_finished(Map* map){
+int Gr7_game_finished(Map* map){
 	int player1 = 0;
 	int player2 = 0;
 	for (int i = 0; i < map -> size; i++){
