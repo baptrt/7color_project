@@ -99,7 +99,7 @@ int Gr7_game_finished(Map* map){
 		}
 	}
 	if (player1 == floor((map -> size) * (map -> size))/2 && player2 == floor((map -> size) * (map -> size))/2){
-		//printf("Le joueur 1 a gagné");
+		//printf("Il y a eu égalité");
 		return -1;
 	}
 	if (player1 >= floor((map -> size) * (map -> size))/2){
@@ -114,3 +114,5 @@ int Gr7_game_finished(Map* map){
 		return 0;
 	}
 }
+
+
