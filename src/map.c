@@ -101,6 +101,7 @@ int main(int argc, char** argv){
 			Gr7_print_map(&map);
 
 			Gr7_update_map(&map, Gr7_player_super_smart(&map,2), 2);
+			Gr7_print_map(&map);
 		}
 		if (Gr7_game_finished(&map) == 1){
 			printf("Bravo joueur 1 tu as gagné");
